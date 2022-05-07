@@ -1,0 +1,58 @@
+.btn {
+  display: flex;
+  flex-flow: row nowrap;
+  background: none;
+  box-sizing: content-box;
+  border: none;
+  padding: 7px;
+  border-radius: 30px;
+  color: var(--color-navy);
+
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: var(--color-accent-blue);
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &--add-todo {
+    @extend .btn;
+    color: #fff;
+    background: var(--color-accent-salmon);
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem auto;
+
+    & svg {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    &:hover {
+      background: #ff7552b3;
+      color: #fff;
+    }
+  }
+
+  &--inline {
+    cursor: pointer;
+
+    background: none;
+    border: none;
+    color: #62a4fe;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.5rem;
+
+    & svg {
+      color: var(--color-dark-grey);
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.app-grid {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: auto 3fr 4fr;
+  grid-template-rows: 55px auto;
+  grid-gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.topbar {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 1;
+  background: #f4f5f7;
+  border-bottom: 1px solid var(--theme-color-border);
+
+  display: grid;
+  grid-template-columns: auto 60px minmax(180px, 225px);
+  grid-gap: 0;
+
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-items: stretch;
+}
+
+.aside {
+  grid-area: 1 / 1 / span 2 / span 1;
+  background: var(--theme-color-background);
+  border-right: 1px solid var(--theme-color-border);
+  padding: 1rem;
+}

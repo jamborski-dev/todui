@@ -1,0 +1,30 @@
+:root {
+  /* text */
+  --font-family: "Ubuntu";
+  --color-navy: #505f79;
+  --color-navy-light: #68778c;
+
+  /* icons */
+  --color-grey-dark: #767676;
+  --color-grey-light: #b7b8b8;
+
+  /* color accents */
+  --color-accent-blue: #2584ff;
+  --color-accent-yellow: #ffc401;
+  --color-accent-salmon: #ff7552;
+
+  --color-border-light: #dfe1e5;
+  --color-menu-hover: #deebff;
+  --color-menu-selected: var(--color-bg-white);
+
+  /* popup / modal */
+  --box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  --border-radius: 22px;
+
+  // theme colors
+  --color-bg-white: rgb(250, 251, 252);
+
+  // light theme
+  --theme-color-background: var(--color-bg-white);
+  --theme-color-border: var(--color-border-light);
+}

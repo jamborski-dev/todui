@@ -1,0 +1,14 @@
+{
+  "name": "ts-todui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm start",
+    "start": "concurrently \"yarn start:server\" \"yarn start:client\""
+  },
+  "dependencies": {
+    "sass": "^1.51.0"
+  }
+}
