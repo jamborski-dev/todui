@@ -4,6 +4,7 @@ const morgan = require("morgan")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const todoRoutes = require("./routes/todos")
+const categoriesRoutes = require("./routes/categories")
 
 mongoose
   .connect(process.env.MONGO_CONN_URI)
@@ -13,6 +14,7 @@ mongoose
     app.use(express.json())
     app.use(morgan("dev"))
     app.use("/api", todoRoutes)
+    app.use("/api", categoriesRoutes)
 
     const port = process.env.PORT || 5000
     app.listen(port, () => {

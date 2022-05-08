@@ -4,7 +4,9 @@ import { useAppContext } from "../hooks/useAppContext"
 
 // types
 import { Todo } from "../types/Todo"
-import { IContext, ContextChildren } from "./appContext.types"
+import { IContext, ContextChildren } from "./todoContext.types"
+import { getConfig, handleFetchError, handleResponse } from "../utils/fetchUtils"
+import { useCategoryContext } from "../hooks/useCategoryContext"
 
 export const TodoContext = createContext<IContext>({
   state: {
@@ -35,6 +37,11 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
     actions: { setEditMode }
   } = useAppContext()
 
+  const {
+    state: { categories },
+    actions: { setCategories }
+  } = useCategoryContext()
+
   const [todos, setTodos] = useState<Todo[] | []>([])
   const [filtered, setFiltered] = useState<Todo[] | []>([])
 
@@ -43,25 +50,22 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
   // const [edited, setEdited] = useState(undefined)
 
   const fetchTodos = async () => {
-    fetch("/api/todos", { method: "GET" })
-      .then(res => {
-        if (!res.ok) throw new Error("There was an error")
-
-        return res.json()
-      })
+    fetch("/api/todos", getConfig)
+      .then(res => handleResponse(res))
       .then(data => {
         setTodos(data)
       })
-      .catch(err => console.error(err))
+      .catch(err => handleFetchError(err))
   }
+
+  // TODO: implement counting on the client? or should it be done on server-side?
+  const setCount = () => {}
 
   const toggleTodo = (id: string) => setCurrentTodo(todos.find(todo => todo._id === id))
 
   const addTodo = () => {
     const newTodo = {
       title: `Untitled todo`,
-      isDone: false,
-      isImportant: false,
       notes: "",
       reminder: null,
       stepList: []
@@ -87,7 +91,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
       .then(() => {
         setEditMode(true)
       })
-      .catch(err => console.error(err))
+      .catch(err => handleFetchError(err))
   }
 
   const saveTodo = () => {
@@ -114,9 +118,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
           )
           setEditMode(false)
         })
-        .catch(err => {
-          console.error(err)
-        })
+        .catch(err => handleFetchError(err))
     }
   }
 
@@ -132,9 +134,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
         fetchTodos()
         setEditMode(false)
       })
-      .catch(err => {
-        console.error(`There was deletion error`, err)
-      })
+      .catch(err => handleFetchError(err))
   }
 
   const toggleFilter = (filterValue: string) => setFilter(filterValue)
@@ -174,7 +174,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
       currentFilter === "marketing" ||
       currentFilter === "development"
     ) {
-      setFiltered(allTodos.filter(todo => todo.category === currentFilter))
+      setFiltered(allTodos.filter(todo => todo.category_id === currentFilter))
       return
     }
   }

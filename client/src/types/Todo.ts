@@ -1,3 +1,5 @@
+import { Category } from "./Category"
+
 export interface Todo {
   _id: string
   title: string
@@ -5,7 +7,7 @@ export interface Todo {
   is_done: boolean
   is_important: boolean
   reminder: string
-  category: string
+  category_id: string | Category
   attachments: string[]
   step_list: string[]
 }

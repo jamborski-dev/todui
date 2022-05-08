@@ -10,7 +10,7 @@ import { Todo } from "../types/Todo"
 
 export const TodoList = () => {
   const {
-    state: { currentFilter, filtered }
+    state: { currentFilter, todos }
   } = useTodoContext()
 
   return (
@@ -26,10 +26,10 @@ export const TodoList = () => {
         {/* TODO: add dropdown */}
       </header>
       <ul>
-        {filtered.length === 0 ? (
+        {todos.length === 0 ? (
           <EmptyList />
         ) : (
-          filtered.map(todo => <TodoListItem key={todo._id} todo={todo} />)
+          todos.map(todo => <TodoListItem key={todo._id} todo={todo} />)
         )}
       </ul>
     </section>

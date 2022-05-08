@@ -9,11 +9,15 @@ const stepListSchema = new mongoose.Schema({
 const schema = mongoose.Schema(
   {
     title: { type: String, required: true },
-    is_done: Boolean,
-    is_important: Boolean,
+    is_done: { type: Boolean, default: false },
+    is_important: { type: Boolean, default: false },
     notes: String,
     reminder: Date,
-    step_list: [stepListSchema]
+    step_list: [stepListSchema],
+    category_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category"
+    }
   },
   {
     timestamps: true

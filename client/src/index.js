@@ -4,14 +4,17 @@ import "./assets/scss/app.scss"
 import App from "./App"
 import { TodoProvider } from "./context/todoContext"
 import { AppProvider } from "./context/appContext"
+import { CategoryProvider } from "./context/categoryContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
     <AppProvider>
-      <TodoProvider>
-        <App />
-      </TodoProvider>
+      <CategoryProvider>
+        <TodoProvider>
+          <App />
+        </TodoProvider>
+      </CategoryProvider>
     </AppProvider>
   </React.StrictMode>
 )

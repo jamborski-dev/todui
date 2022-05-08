@@ -2,17 +2,17 @@ import React from "react"
 import { Grid3x3Gap, CalendarDate, Alarm, ListCheck, Star } from "react-bootstrap-icons"
 
 export const menuItemsPrimary = [
-  { name: "Overview", icon: <Grid3x3Gap />, filter: "", howMany: 0, color: "" },
-  { name: "Today", icon: <CalendarDate />, filter: "today", howMany: 0, color: "" },
-  { name: "Done", icon: <ListCheck />, filter: "done", howMany: 0, color: "" },
-  { name: "Important", icon: <Star />, filter: "important", howMany: 3, color: "" },
-  { name: "Scheduled", icon: <Alarm />, filter: "scheduled", howMany: 9, color: "" }
+  { label: "Overview", icon: <Grid3x3Gap />, color: "" },
+  { label: "Today", icon: <CalendarDate />, color: "" },
+  { label: "Done", icon: <ListCheck />, color: "" },
+  { label: "Important", icon: <Star />, color: "" },
+  { label: "Scheduled", icon: <Alarm />, color: "" }
 ]
 
 export const menuItemsSecondary = [
-  { name: "Design", icon: null, filter: "design", howMany: 21, color: "blue" },
-  { name: "Marketing", icon: null, filter: "marketing", howMany: 8, color: "orange" },
-  { name: "Development", icon: null, filter: "development", howMany: 37, color: "salmon" }
+  { name: "Design", icon: null, filter: "design", color: "blue" },
+  { name: "Marketing", icon: null, filter: "marketing", color: "orange" },
+  { name: "Development", icon: null, filter: "development", color: "salmon" }
 ]
 
 export const todos = [

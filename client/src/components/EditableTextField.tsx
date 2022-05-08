@@ -28,16 +28,12 @@ export const EditableTextField = ({ keyName, inputType = "text" }: Props) => {
   return (
     <>
       {!editMode ? (
-        // TODO: use __html somehow?
-        // <div
-        //   className="todo-details--editable-content"
-        //   dangerouslySetInnerHTML={{ __html: currentTodo && currentTodo[keyName as keyof Todo] }}
-        // />
-
-        // below temporary workaround
-        <div className="todo-details--editable-content">
-          {currentTodo && currentTodo[keyName as keyof Todo]}
-        </div>
+        <div
+          className="todo-details--editable-content"
+          dangerouslySetInnerHTML={{
+            __html: `${currentTodo && currentTodo[keyName as keyof Todo]}`
+          }}
+        />
       ) : (
         <CustomField
           inputType={inputType}

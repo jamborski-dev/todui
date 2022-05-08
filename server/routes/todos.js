@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get("/todos", async (req, res) => {
   try {
-    const data = await Todo.find()
+    const data = await Todo.find().populate("category_id")
     res.json(data)
   } catch (err) {
     console.error(err)
@@ -15,14 +15,15 @@ router.get("/todos", async (req, res) => {
 router.post("/todos", async (req, res) => {
   if (!req.body) return res.status(204).end()
 
-  const { title, isDone, isImportant, notes, reminder, stepList } = req.body
+  const { title, isDone, isImportant, notes, reminder, stepList, category_id } = req.body
   const newTodo = new Todo({
     title: title,
     is_done: isDone,
     is_important: isImportant,
     notes: notes,
     reminder: reminder,
-    step_list: stepList
+    step_list: stepList,
+    category_id: category_id
   })
 
   try {
@@ -40,7 +41,8 @@ router.patch("/todos/:id", async (req, res) => {
   const { body } = req
   let todo
   try {
-    todo = await Todo.findOne({ _id: id })
+    todo = await Todo.findOne({ _id: id }).populate("category_id")
+    console.log(todo)
   } catch (err) {
     console.error(err)
     res.status(404).json({ type: "Error", message: "Could not retrieve document with given id" })
@@ -52,13 +54,14 @@ router.patch("/todos/:id", async (req, res) => {
   if (body.notes) todo.notes = body.notes
   if (body.reminder) todo.reminder = body.reminder
   if (body.stepList) todo.step_list = body.stepList
+  if (body.category_id) todo.category_id = body.category_id
 
   try {
     let saved = await todo.save()
     res.json(saved)
   } catch (err) {
     console.error(err)
-    res.status(500).json({ type: "Error", message: "Could not retrieve document with given id" })
+    res.status(500).json({ type: "Error", message: "Updating this document failed." })
   }
 })
 
