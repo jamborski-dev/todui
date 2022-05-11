@@ -38,8 +38,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
   } = useAppContext()
 
   const {
-    state: { categories },
-    actions: { setCategories }
+    actions: { setShouldRefetch }
   } = useCategoryContext()
 
   const [todos, setTodos] = useState<Todo[] | []>([])
@@ -54,6 +53,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
       .then(res => handleResponse(res))
       .then(data => {
         setTodos(data)
+        console.log(data)
       })
       .catch(err => handleFetchError(err))
   }
@@ -117,6 +117,9 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
             )
           )
           setEditMode(false)
+        })
+        .then(() => {
+          setShouldRefetch(true)
         })
         .catch(err => handleFetchError(err))
     }

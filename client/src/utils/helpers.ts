@@ -14,7 +14,7 @@ export const formatDate = {
     const timeUK =
       hours > 12
         ? `${hours - 12}:${minutes}pm`
-        : `${hours}:${minutes > 9 ? minutes : `0${minutes}`}am`
+        : `${hours}:${minutes.toString().padStart(2, "0")}am`
 
     return timeUK
   }

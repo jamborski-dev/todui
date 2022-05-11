@@ -8,10 +8,12 @@ import { useTodoContext } from "../hooks/useTodoContext"
 const initialContext = {
   state: {
     categories: [],
-    menuItems: []
+    menuItems: [],
+    shouldRefetch: false
   },
   actions: {
-    setCategories: () => {}
+    setCategories: () => {},
+    setShouldRefetch: () => {}
   }
 }
 
@@ -23,10 +25,12 @@ interface ICategoryContext {
 interface ICategoryContextState {
   categories: Category[]
   menuItems: MenuItem[]
+  shouldRefetch: boolean
 }
 
 interface ICategoryContextActions {
-  setCategories: Dispatch<SetStateAction<Category[] | []>>
+  setCategories: Dispatch<SetStateAction<Category[]>>
+  setShouldRefetch: Dispatch<SetStateAction<boolean>>
 }
 
 type ContextProps = {
@@ -50,23 +54,36 @@ export const CategoryProvider = ({ children }: ContextProps) => {
 
   const [categories, setCategories] = useState<Category[]>([])
   const [menuItems, setMenuItems] = useState<MenuItem[]>(MenuItemsInitial)
+  const [shouldRefetch, setShouldRefetch] = useState<boolean>(false)
 
   const fetchCategories = () => {
     fetch("/api/category", getConfig)
       .then(res => handleResponse(res))
-      .then(json => setCategories(json))
+      .then(json => {
+        console.log(json)
+        setCategories(json)
+      })
       .catch(err => handleFetchError(err))
   }
 
-  const countCategories = () => {}
+  // TODO: implement local count for primary menu (done, scheduled etc.)
+  // const countCategories = () => {}
 
+  // initial data fetch
   useEffect(() => {
     fetchCategories()
   }, [])
 
+  // refetch on count change
+  useEffect(() => {
+    if (!shouldRefetch) return
+    fetchCategories()
+    setShouldRefetch(false)
+  }, [shouldRefetch])
+
   const contextObject = {
-    state: { menuItems, categories },
-    actions: { setCategories }
+    state: { menuItems, categories, shouldRefetch },
+    actions: { setCategories, setShouldRefetch }
   }
 
   return <CategoryContext.Provider value={contextObject}>{children}</CategoryContext.Provider>

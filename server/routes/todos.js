@@ -15,6 +15,7 @@ router.get("/todos", async (req, res) => {
 router.post("/todos", async (req, res) => {
   if (!req.body) return res.status(204).end()
 
+  // validation needed
   const { title, isDone, isImportant, notes, reminder, stepList, category_id } = req.body
   const newTodo = new Todo({
     title: title,

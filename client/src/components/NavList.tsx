@@ -1,5 +1,6 @@
 import { useTodoContext } from "../hooks/useTodoContext"
 import { useCategoryContext } from "../hooks/useCategoryContext"
+import { useEffect } from "react"
 
 type MenuItem = {
   color: string
@@ -51,12 +52,18 @@ export const NavListCategories = () => {
               {" "}
             </span>
             <span>{item.label}</span>
-            <span className={item.count ? (item.color ? item.color : "") : "empty"}>
-              {item.count ? item.count : null}
-            </span>
+            <NavListCounter count={item.count} color={item.color} />
           </li>
         ))}
       </ul>
     </nav>
   )
 }
+
+type NavListCounterProps = {
+  count: number | undefined
+  color: string
+}
+const NavListCounter = ({ count, color }: NavListCounterProps) => (
+  <span className={count ? (color ? color : "") : "empty"}>{count ? count : null}</span>
+)

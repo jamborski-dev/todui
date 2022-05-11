@@ -1,10 +1,12 @@
+// @ts-check
+
 const express = require("express")
-const Category = require("../models/Category") // new
+const Category = require("../models/Category")
 const router = express.Router()
 
 router.get("/category", async (req, res) => {
   try {
-    const data = await Category.find()
+    const data = await Category.find().populate("count")
     res.json(data)
   } catch (err) {
     console.error(err)
@@ -17,8 +19,8 @@ router.post("/category", async (req, res) => {
 
   const { label, color } = req.body
   const newCategory = new Category({
-    label: label,
-    color: color
+    label,
+    color
   })
 
   try {
@@ -42,8 +44,8 @@ router.patch("/category/:id", async (req, res) => {
     res.status(404).json({ type: "Error", message: "Could not retrieve document with given id" })
   }
 
-  if (body.label) todo.label = String.toLowerCase(body.label)
-  if (body.color) todo.color = body.color
+  if (body.label) category.label = body.label.toLowerCase()
+  if (body.color) category.color = body.color
 
   try {
     let saved = await category.save()
