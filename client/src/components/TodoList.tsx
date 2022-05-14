@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Bell, Star, StarFill, ArrowDownUp, FileEarmark, Stopwatch } from "react-bootstrap-icons"
 
 import { formatDate } from "../utils/helpers"
@@ -41,7 +41,9 @@ interface Props {
 }
 
 const TodoListItem = ({ todo }: Props) => {
-  const { _id, is_done, is_important, reminder, title, attachments } = { ...todo }
+  const { _id, is_done, is_important, reminder, title, attachments, category_id } = { ...todo }
+  const [color, setColor] = useState("")
+
   const {
     state: { currentTodo },
     actions: { toggleTodo, markDone, markImportant }
@@ -57,10 +59,24 @@ const TodoListItem = ({ todo }: Props) => {
     markDone(id)
   }
 
+  useEffect(() => {
+    if (typeof category_id !== "object") {
+      setColor("")
+      return
+    }
+
+    setColor(category_id.color)
+  }, [category_id])
+
   return (
     <li
       className={`todo-list--item ${currentTodo && currentTodo._id === _id ? "is-selected" : ""}`}
       onClick={() => toggleTodo(_id)}
+      style={
+        {
+          "--color-category": color ? color : "var(--color-category-default)"
+        } as React.CSSProperties
+      }
     >
       <Checkbox
         checked={is_done}

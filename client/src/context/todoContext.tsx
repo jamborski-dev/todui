@@ -41,8 +41,8 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
     actions: { setShouldRefetch }
   } = useCategoryContext()
 
-  const [todos, setTodos] = useState<Todo[] | []>([])
-  const [filtered, setFiltered] = useState<Todo[] | []>([])
+  const [todos, setTodos] = useState<Todo[]>([])
+  const [filtered, setFiltered] = useState<Todo[]>([])
 
   const [currentTodo, setCurrentTodo] = useState<Todo>()
   const [currentFilter, setFilter] = useState("")
@@ -136,6 +136,7 @@ export const TodoProvider = ({ children }: ContextChildren): React.ReactNode => 
         setCurrentTodo(undefined)
         fetchTodos()
         setEditMode(false)
+        setShouldRefetch(true)
       })
       .catch(err => handleFetchError(err))
   }

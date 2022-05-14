@@ -1,3 +1,4 @@
+import { FC, useEffect, useState } from "react"
 import {
   Stopwatch,
   ThreeDotsVertical,
@@ -13,37 +14,64 @@ import {
 } from "react-bootstrap-icons"
 import { BsX } from "react-icons/bs"
 
-import { TodoDetailsDefault } from "./TodoDetailsDefault"
 import { EditableTextField } from "./EditableTextField"
 
 import { Checkbox } from "./Checkbox"
+import { Modal } from "./Modal"
 import { useTodoContext } from "../hooks/useTodoContext"
 import { useAppContext } from "../hooks/useAppContext"
 import { ButtonTool } from "./ButtonTool"
 
 import { formatDate } from "../utils/helpers"
-import { useEffect, useState } from "react"
-import { useCategoryContext } from "../hooks/useCategoryContext"
-import { Category } from "../types/Category"
+import { CategoryBadge } from "./CategoryBadge"
+import { CategorySelect } from "./CategorySelect"
+import { Todo } from "../types/Todo"
+import { useModalContext } from "../hooks/useModalContext"
 
-export const TodoDetails = () => {
-  const [categoryName, setCategoryName] = useState<string | undefined>(undefined)
+type TodoDetailsProps = {
+  todo: Todo
+}
+
+export const TodoDetails: FC<TodoDetailsProps> = ({ todo }) => {
+  const { _id, is_done, is_important, reminder, step_list, category_id } = todo
+  const [color, setColor] = useState("")
+
   const {
-    state: { currentTodo },
     actions: { markImportant, markDone, removeTodo, saveTodo }
   } = useTodoContext()
+
+  const {
+    actions: { openModal, closeModal }
+  } = useModalContext()
 
   const {
     state: { editMode },
     actions: { toggleEditMode }
   } = useAppContext()
 
-  if (!currentTodo) return <TodoDetailsDefault />
+  const confirmRemove = () => {
+    removeTodo(_id)
+    closeModal()
+  }
 
-  const { _id, title, is_done, is_important, notes, reminder, step_list, category_id } = currentTodo
+  useEffect(() => {
+    if (typeof category_id !== "object") {
+      setColor("")
+      return
+    }
+
+    setColor(category_id.color)
+  }, [category_id])
 
   return (
-    <section className="todo-details--pane">
+    <section
+      className="todo-details--pane"
+      style={
+        {
+          "--color-category": color ? color : "var(--color-category-default)"
+        } as React.CSSProperties
+      }
+    >
       <Checkbox
         outterClass="todo-details--checkbox"
         checked={is_done}
@@ -69,9 +97,17 @@ export const TodoDetails = () => {
               <Save />
             </ButtonTool>
           )}
-          <ButtonTool onClick={() => removeTodo(_id)}>
+          <ButtonTool onClick={openModal}>
             <Trash />
           </ButtonTool>
+          <Modal>
+            Are you sure you want to delete this document?
+            <div>
+              <button onClick={() => confirmRemove()}>Confirm Delete</button>
+              <button onClick={() => closeModal()}>Cancel</button>
+            </div>
+          </Modal>
+          {/* TODO: undo changes on cancel / currently displayed note stays changed until switched */}
           <ButtonTool onClick={() => toggleEditMode()}>
             {!editMode ? <PenFill /> : <BsX />}
           </ButtonTool>
@@ -123,64 +159,5 @@ export const TodoDetails = () => {
       </div>
       {/* <footer className="todo-details--footer"></footer> */}
     </section>
-  )
-}
-
-type CategorySelectProps = {
-  current: string | null
-}
-
-const CategorySelect = ({ current }: CategorySelectProps) => {
-  const {
-    state: { categories }
-  } = useCategoryContext()
-
-  const {
-    actions: { setCurrentTodo }
-  } = useTodoContext()
-
-  const handleCategoryChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    const { value } = e.currentTarget
-    let cat = categories.find(item => item._id === value)
-    setCurrentTodo(prev => {
-      if (prev) return { ...prev, category_id: cat as Category }
-    })
-  }
-
-  return (
-    <select
-      onChange={e => handleCategoryChange(e)}
-      name="category-name"
-      defaultValue={current ? current : ""}
-    >
-      <option
-        value={""}
-        // selected={!current}
-      >
-        no category
-      </option>
-      {categories.map((item, i) => (
-        <option
-          key={i}
-          value={item._id}
-          // selected={current === item._id}
-        >
-          {item.label}
-        </option>
-      ))}
-    </select>
-  )
-}
-
-interface CategoryBadgeProps {
-  color?: string | null
-  label?: string | null
-}
-
-const CategoryBadge = ({ color, label }: CategoryBadgeProps) => {
-  return (
-    <div className="category--badge" style={color ? { backgroundColor: color } : {}}>
-      {label ? label : "no category"}
-    </div>
   )
 }

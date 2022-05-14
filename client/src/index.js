@@ -4,17 +4,20 @@ import "./assets/scss/app.scss"
 import App from "./App"
 import { TodoProvider } from "./context/todoContext"
 import { AppProvider } from "./context/appContext"
+import { ModalProvider } from "./context/modalContext"
 import { CategoryProvider } from "./context/categoryContext"
 
-const root = ReactDOM.createRoot(document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById("app-root"))
 root.render(
   <React.StrictMode>
     <AppProvider>
-      <CategoryProvider>
-        <TodoProvider>
-          <App />
-        </TodoProvider>
-      </CategoryProvider>
+      <ModalProvider>
+        <CategoryProvider>
+          <TodoProvider>
+            <App />
+          </TodoProvider>
+        </CategoryProvider>
+      </ModalProvider>
     </AppProvider>
   </React.StrictMode>
 )

@@ -1,7 +1,7 @@
 import { AppGrid, TopBar } from "./components/AppGrid"
 import { Aside } from "./components/Aside"
 import { TodoList } from "./components/TodoList"
-import { TodoDetails } from "./components/TodoDetails"
+import { TodoDetailsContainer } from "./components/TodoDetailsContainer"
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Aside />
       <TopBar>topbar</TopBar>
       <TodoList />
-      <TodoDetails />
+      <TodoDetailsContainer />
     </AppGrid>
   )
 }

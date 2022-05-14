@@ -16,7 +16,7 @@
     align-items: center;
     width: 36px;
     height: 36px;
-    border: 2px solid var(--color-accent-blue);
+    border: 2px solid var(--color-category);
     opacity: 0.8;
     background: "none";
     border-radius: 100px;
@@ -25,7 +25,7 @@
       transform 0.2s ease-out;
 
     &.checked {
-      background: var(--color-accent-blue);
+      background: var(--color-category);
       transform: rotateY(0);
 
       & svg {

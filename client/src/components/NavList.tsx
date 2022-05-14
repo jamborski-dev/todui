@@ -1,12 +1,5 @@
 import { useTodoContext } from "../hooks/useTodoContext"
 import { useCategoryContext } from "../hooks/useCategoryContext"
-import { useEffect } from "react"
-
-type MenuItem = {
-  color: string
-  label: string
-  howMany?: number
-}
 
 export const NavListPrimary = () => {
   const {

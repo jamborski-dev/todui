@@ -3,7 +3,6 @@ import { Category } from "../types/Category"
 import { MenuItem } from "../types/MenuItem"
 import { getConfig, handleResponse, handleFetchError } from "../utils/fetchUtils"
 import { Grid3x3Gap, CalendarDate, Alarm, ListCheck, Star } from "react-bootstrap-icons"
-import { useTodoContext } from "../hooks/useTodoContext"
 
 const initialContext = {
   state: {
@@ -48,10 +47,6 @@ const MenuItemsInitial = [
 export const CategoryContext = createContext<ICategoryContext>(initialContext)
 
 export const CategoryProvider = ({ children }: ContextProps) => {
-  const {
-    state: { todos }
-  } = useTodoContext()
-
   const [categories, setCategories] = useState<Category[]>([])
   const [menuItems, setMenuItems] = useState<MenuItem[]>(MenuItemsInitial)
   const [shouldRefetch, setShouldRefetch] = useState<boolean>(false)
