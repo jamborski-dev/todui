@@ -1,5 +1,6 @@
 import { useTodoContext } from "../hooks/useTodoContext"
 import { useCategoryContext } from "../hooks/useCategoryContext"
+import { Plus } from "react-bootstrap-icons"
 
 export const NavListPrimary = () => {
   const {
@@ -48,6 +49,12 @@ export const NavListCategories = () => {
             <NavListCounter count={item.count} color={item.color} />
           </li>
         ))}
+        <li className="nav--list-item button">
+          <div className="btn--icon">
+            <Plus />
+          </div>
+          <button className="btn btn--add-category">Add Category</button>
+        </li>
       </ul>
     </nav>
   )

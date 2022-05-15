@@ -7,8 +7,13 @@ export const ButtonAddTodo = ({ ...props }) => {
   } = useTodoContext()
 
   return (
-    <button className="btn--add-todo" onClick={() => addTodo()} {...props}>
-      <Plus />
-    </button>
+    <div className="btn--add-todo__wrapper">
+      <button id="addTodo" className="btn--add-todo" onClick={() => addTodo()} {...props}>
+        <Plus />
+      </button>
+      <label className="btn--add-todo__label" htmlFor="addTodo">
+        Add New
+      </label>
+    </div>
   )
 }

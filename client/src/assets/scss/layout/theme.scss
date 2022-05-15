@@ -1,0 +1,15 @@
+.dark {
+  --theme-color-background: var(--color-bg-dark);
+  --theme-color-border: var(--color-border-dark);
+  --theme-color-font: var(--color-font-light);
+  --theme-color-menu-hover: var(--color-menu-hover-dark);
+  --theme-color-menu-selected: var(--color-menu-selected-dark);
+}
+
+.light {
+  --theme-color-background: var(--color-bg-light);
+  --theme-color-border: var(--color-border-light);
+  --theme-color-font: var(--color-font-dark);
+  --theme-color-menu-hover: var(--color-menu-hover-light);
+  --theme-color-menu-selected: var(--color-menu-selected-light);
+}

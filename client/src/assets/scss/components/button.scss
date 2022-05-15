@@ -16,6 +16,19 @@
     background: rgba(0, 0, 0, 0.1);
   }
 
+  &--add-category {
+    padding: 8px 0;
+
+    &:hover {
+      background-color: unset;
+    }
+  }
+
+  &--icon {
+    display: grid;
+    place-items: center;
+  }
+
   &--add-todo {
     @extend .btn;
     color: #fff;
@@ -32,6 +45,17 @@
     &:hover {
       background: #ff7552b3;
       color: #fff;
+    }
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__label {
+      font-size: 0.8rem;
     }
   }
 
@@ -54,5 +78,30 @@
       height: 20px;
       margin-right: 5px;
     }
+  }
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  padding: 8px 12px;
+
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  &.cancel {
+    background-color: rgb(221, 46, 46);
+    color: #fff;
+  }
+
+  &.confirm {
+    background-color: rgb(28, 184, 0);
+    color: #fff;
   }
 }

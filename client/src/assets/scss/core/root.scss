@@ -13,10 +13,6 @@
   --color-accent-yellow: #ffc401;
   --color-accent-salmon: #ff7552;
 
-  --color-border-light: #dfe1e5;
-  --color-menu-hover: #deebff;
-  --color-menu-selected: var(--color-bg-white);
-
   --color-category-default: var(--color-grey-dark);
 
   /* popup / modal */
@@ -24,9 +20,15 @@
   --border-radius: 22px;
 
   // theme colors
-  --color-bg-white: rgb(250, 251, 252);
+  --color-border-light: #dfe1e5;
+  --color-bg-light: rgb(250, 251, 252);
+  --color-bg-dark: rgb(45, 45, 46);
+  --color-menu-hover-light: #deebff;
+  --color-menu-selected-light: #fff;
 
-  // light theme
-  --theme-color-background: var(--color-bg-white);
-  --theme-color-border: var(--color-border-light);
+  --color-font-light: rgb(236, 236, 243);
+  --color-font-dark: rgb(45, 45, 46);
+  --color-border-dark: #38393b;
+  --color-menu-hover-dark: #373a3f;
+  --color-menu-selected-dark: rgb(55, 55, 63);
 }

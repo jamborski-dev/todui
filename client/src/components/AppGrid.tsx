@@ -1,13 +1,14 @@
 import React from "react"
+import { useAppContext } from "../hooks/useAppContext"
 
 type Props = {
   children?: React.ReactNode
 }
 
 export const AppGrid = ({ children }: Props) => {
-  return <main className="app-grid">{children}</main>
-}
+  const {
+    state: { theme }
+  } = useAppContext()
 
-export const TopBar = ({ children }: Props) => {
-  return <header className="topbar">{children}</header>
+  return <main className={`app-grid ${theme}`}>{children}</main>
 }

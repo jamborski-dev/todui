@@ -24,7 +24,7 @@
 
     /* menu item icon */
     & > span:nth-child(1) {
-      color: var(--color-dark-grey);
+      color: var(--theme-color-font);
       font-size: 1.1rem;
       padding-top: 6px;
       justify-self: center;
@@ -32,7 +32,7 @@
 
     /* menu item title */
     & > span:nth-child(2) {
-      color: var(--navy);
+      color: var(--theme-color-font);
       font-weight: 500;
       margin-right: 10px;
     }
@@ -66,20 +66,16 @@
       background: (--color-dark-grey);
     }
 
-    & > .salmon {
-      background: var(--color-accent-salmon) !important;
-    }
-
-    & > .blue {
-      background: var(--color-accent-blue) !important;
-    }
-
-    & > .orange {
-      background: var(--color-accent-yellow) !important;
-    }
-
     &:hover {
-      background: var(--color-menu-hover);
+      background: var(--theme-color-menu-hover);
+    }
+
+    &.button {
+      margin-top: 1rem;
+
+      &:hover {
+        background: unset;
+      }
     }
   }
 }

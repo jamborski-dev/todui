@@ -27,6 +27,7 @@ import { CategoryBadge } from "./CategoryBadge"
 import { CategorySelect } from "./CategorySelect"
 import { Todo } from "../types/Todo"
 import { useModalContext } from "../hooks/useModalContext"
+import { Button } from "./Button"
 
 type TodoDetailsProps = {
   todo: Todo
@@ -100,11 +101,16 @@ export const TodoDetails: FC<TodoDetailsProps> = ({ todo }) => {
           <ButtonTool onClick={openModal}>
             <Trash />
           </ButtonTool>
-          <Modal>
-            Are you sure you want to delete this document?
-            <div>
-              <button onClick={() => confirmRemove()}>Confirm Delete</button>
-              <button onClick={() => closeModal()}>Cancel</button>
+          <Modal showClose={false}>
+            <h2 className="header">Confrim Deletion</h2>
+            <p className="text">Are you sure you want to delete this document?</p>
+            <div className="btn-group">
+              <Button className="confirm" onClick={() => confirmRemove()}>
+                Confirm Delete
+              </Button>
+              <Button className="cancel" onClick={() => closeModal()}>
+                Cancel
+              </Button>
             </div>
           </Modal>
           {/* TODO: undo changes on cancel / currently displayed note stays changed until switched */}

@@ -12,7 +12,8 @@
 .topbar {
   grid-column: 2 / span 2;
   grid-row: 1 / span 1;
-  background: #f4f5f7;
+  background: var(--theme-color-background);
+  color: var(--theme-color-font);
   border-bottom: 1px solid var(--theme-color-border);
 
   display: grid;

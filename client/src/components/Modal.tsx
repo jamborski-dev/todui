@@ -5,9 +5,10 @@ import { ButtonTool } from "./ButtonTool"
 
 type ModalProps = {
   children: ReactNode
+  showClose: boolean
 }
 
-export const Modal: FC<ModalProps> = ({ children }) => {
+export const Modal: FC<ModalProps> = ({ children, showClose = false }) => {
   const {
     state: { isOpen },
     actions: { closeModal }
@@ -19,9 +20,11 @@ export const Modal: FC<ModalProps> = ({ children }) => {
     <>
       <div className="modal--overlay"></div>
       <div className="modal--container">
-        <ButtonTool onClick={() => closeModal()} className="modal--close">
-          x
-        </ButtonTool>
+        {showClose && (
+          <ButtonTool onClick={() => closeModal()} className="modal--close">
+            X
+          </ButtonTool>
+        )}
         <div className="modal--content">{children}</div>
       </div>
     </>,
