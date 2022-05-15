@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react"
 import { createPortal } from "react-dom"
+import { useAppContext } from "../hooks/useAppContext"
 import { useModalContext } from "../hooks/useModalContext"
 import { ButtonTool } from "./ButtonTool"
 
@@ -14,12 +15,16 @@ export const Modal: FC<ModalProps> = ({ children, showClose = false }) => {
     actions: { closeModal }
   } = useModalContext()
 
+  const {
+    state: { theme }
+  } = useAppContext()
+
   if (!isOpen) return null
 
   return createPortal(
     <>
       <div className="modal--overlay"></div>
-      <div className="modal--container">
+      <div className={`${theme} modal--container`}>
         {showClose && (
           <ButtonTool onClick={() => closeModal()} className="modal--close">
             X

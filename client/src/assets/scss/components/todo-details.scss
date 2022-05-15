@@ -1,7 +1,7 @@
 .todo-details {
   &--pane {
-    background: var(--theme-color-background);
-    color: var(--theme-color-font);
+    background-color: var(--theme-color-background-primary);
+    color: var(--theme-color-font-primary);
     padding: 2rem 1.5rem;
     padding-bottom: 0;
     padding-right: 1rem;
@@ -13,10 +13,15 @@
     grid-template-areas:
       "checkbox header"
       ". body";
+
+    transition: {
+      property: background-color, color;
+      duration: var(--theme-transition-duration);
+    }
   }
 
   &--body {
-    padding: 0 0.5rem 0 0;
+    padding: 1rem 0.5rem 0 0;
     grid-area: body;
   }
 
@@ -59,7 +64,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    // justify-content: center;
     align-items: center;
 
     & svg {
@@ -79,12 +83,12 @@
     padding: 0;
     font: inherit;
     white-space: pre-line;
-    // border-radius: 7px;
+    color: inherit;
   }
   &--editable-content__input {
     border: none;
     background: transparent;
-    outline: #b8b8b8 dashed 1px;
+    outline: var(--theme-color-border) dashed 1px;
     outline-offset: 7px;
   }
 
@@ -106,11 +110,17 @@
     justify-content: center;
     align-items: center;
     font-size: 0.9rem;
-    color: #636363;
+    color: var(--theme-color-font-secondary);
+    background-color: var(--theme-color-background-primary);
     font-style: italic;
     max-height: 100vh;
     height: 100%;
     text-align: center;
+
+    transition: {
+      property: background-color, color;
+      duration: var(--theme-transition-duration);
+    }
   }
 }
 

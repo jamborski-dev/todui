@@ -1,4 +1,4 @@
-import { Check2 } from "react-bootstrap-icons"
+import { BsCheck2 } from "react-icons/bs"
 
 type Props = {
   checked: boolean
@@ -14,7 +14,7 @@ export const Checkbox = ({ outterClass, checked, ...props }: Props) => {
       <div className={`checkbox--custom ${checked ? "checked" : ""}`} {...props}>
         {checked && (
           <span className="checkbox-icon">
-            <Check2 />
+            <BsCheck2 />
           </span>
         )}
       </div>

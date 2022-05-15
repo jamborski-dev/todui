@@ -12,7 +12,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-    background-color: var(--theme-color-background);
+    background-color: var(--theme-color-background-primary);
     padding: 30px;
     border-radius: 5px;
     z-index: 10;
@@ -20,7 +20,7 @@
 
   &--content {
     text-align: center;
-    color: var(--theme-color-font);
+    color: var(--theme-color-font-primary);
 
     & .header {
       margin: 0;

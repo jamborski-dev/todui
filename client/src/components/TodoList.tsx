@@ -16,7 +16,7 @@ export const TodoList = () => {
   return (
     <section className="todo-list--pane">
       <header className="todo-list--header">
-        <h3>{currentFilter ? currentFilter : "Overview"}</h3>
+        <h3 className="header">{currentFilter ? currentFilter : "Overview"}</h3>
         <span>
           <ButtonTool className="right">
             <ArrowDownUp />
@@ -83,7 +83,7 @@ const TodoListItem = ({ todo }: Props) => {
         onClick={e => handleMarkDone(e as React.MouseEvent<HTMLElement>, _id)}
       />
       <div className="todo-list--item-content">
-        <h4>{title}</h4>
+        <h4 className="header">{title}</h4>
         <div className="todo-meta">
           {reminder && (
             <span>

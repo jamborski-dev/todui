@@ -29,7 +29,8 @@
       transform: rotateY(0);
 
       & svg {
-        stroke: #fff;
+        color: #fff;
+        font-weight: 900;
       }
     }
 
@@ -37,7 +38,7 @@
       width: 20px;
       height: 20px;
       margin-top: 6px;
-      stroke: var(--theme-color-background);
+      stroke: var(--theme-color-background-primary);
     }
 
     &:hover {

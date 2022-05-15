@@ -12,8 +12,8 @@
 .topbar {
   grid-column: 2 / span 2;
   grid-row: 1 / span 1;
-  background: var(--theme-color-background);
-  color: var(--theme-color-font);
+  background: var(--theme-color-background-primary);
+  color: var(--theme-color-font-primary);
   border-bottom: 1px solid var(--theme-color-border);
 
   display: grid;
@@ -24,11 +24,21 @@
   padding: 0;
   align-items: center;
   justify-items: stretch;
+
+  transition: {
+    property: background, color, border-color;
+    duration: var(--theme-transition-duration);
+  }
 }
 
 .aside {
   grid-area: 1 / 1 / span 2 / span 1;
-  background: var(--theme-color-background);
+  background: var(--theme-color-background-primary);
   border-right: 1px solid var(--theme-color-border);
   padding: 1rem;
+
+  transition: {
+    property: background, color, border-color;
+    duration: var(--theme-transition-duration);
+  }
 }

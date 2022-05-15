@@ -19,3 +19,19 @@ export const formatDate = {
     return timeUK
   }
 }
+
+export const capitalize = (string: string) => {
+  return string
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join(" ")
+}
+
+export const generateHSL = () => {
+  let H = Math.random() * 360
+  let S = `100%`
+  let L = `${Math.random() * (65 - 50) + 50}%`
+
+  return `hsl(${H}, ${S}, ${L})`
+}

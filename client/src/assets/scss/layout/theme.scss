@@ -1,15 +1,19 @@
 .dark {
-  --theme-color-background: var(--color-bg-dark);
+  --theme-color-background-primary: var(--color-bg-dark-primary);
+  --theme-color-background-secondary: var(--color-bg-dark-secondary);
   --theme-color-border: var(--color-border-dark);
-  --theme-color-font: var(--color-font-light);
+  --theme-color-font-primary: var(--color-font-light-primary);
+  --theme-color-font-secondary: var(--color-font-light-secondary);
   --theme-color-menu-hover: var(--color-menu-hover-dark);
   --theme-color-menu-selected: var(--color-menu-selected-dark);
 }
 
 .light {
-  --theme-color-background: var(--color-bg-light);
+  --theme-color-background-primary: var(--color-bg-light-primary);
+  --theme-color-background-secondary: var(--color-bg-light-secondary);
   --theme-color-border: var(--color-border-light);
-  --theme-color-font: var(--color-font-dark);
+  --theme-color-font-primary: var(--color-font-dark-primary);
+  --theme-color-font-secondary: var(--color-font-dark-secondary);
   --theme-color-menu-hover: var(--color-menu-hover-light);
   --theme-color-menu-selected: var(--color-menu-selected-light);
 }

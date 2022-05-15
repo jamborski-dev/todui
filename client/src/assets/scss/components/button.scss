@@ -6,7 +6,12 @@
   border: none;
   padding: 7px;
   border-radius: 30px;
-  color: var(--color-navy);
+  color: var(--theme-color-font-primary);
+
+  transition: {
+    property: color;
+    duration: var(--theme-transition-duration);
+  }
 
   cursor: pointer;
   position: relative;
@@ -27,6 +32,7 @@
   &--icon {
     display: grid;
     place-items: center;
+    color: var(--theme-color-font-primary);
   }
 
   &--add-todo {
@@ -56,6 +62,7 @@
 
     &__label {
       font-size: 0.8rem;
+      color: var(--theme-color-font-primary);
     }
   }
 

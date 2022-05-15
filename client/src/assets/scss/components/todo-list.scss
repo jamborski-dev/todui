@@ -1,10 +1,15 @@
 .todo-list {
   &--pane {
     grid-area: 2 / 2 / span 1 / span 1;
-    background: var(--theme-color-background);
+    background: var(--theme-color-background-primary);
     border-bottom: 1px solid var(--theme-color-border);
     border-right: 1px solid var(--theme-color-border);
-    color: var(--theme-color-font);
+    color: var(--theme-color-font-primary);
+
+    transition: {
+      property: background-color, color, border-color;
+      duration: var(--theme-transition-duration);
+    }
   }
 
   &--header {
@@ -17,8 +22,9 @@
     align-items: center;
     text-transform: uppercase;
 
-    & h3 {
+    & .header {
       margin: 0;
+      font-weight: 400;
     }
 
     & span {
@@ -36,7 +42,8 @@
     justify-content: space-between;
     align-items: center;
 
-    transition: background 0.1s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    transition: background 0.1s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out,
+      border-color var(--theme-transition-duration);
     cursor: pointer;
 
     & svg {
@@ -59,14 +66,15 @@
     width: 100%;
     margin-left: 1rem;
 
-    & h4 {
+    & .header {
       display: block;
       padding: 0;
       margin: 0;
       margin-bottom: 8px;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
+
   &--item-details {
     display: flex;
     flex-direction: row;
@@ -87,11 +95,17 @@
     align-items: center;
     justify-items: center;
     font-size: 0.75rem;
-    color: #b0b0b0;
+    color: var(--theme-color-font-secondary);
+    background-color: var(--theme-color-background-primary);
     font-style: italic;
     padding-top: 3rem;
     max-height: 100vh;
     height: 100%;
     text-align: center;
+
+    transition: {
+      property: background-color, color;
+      duration: var(--theme-transition-duration);
+    }
   }
 }
